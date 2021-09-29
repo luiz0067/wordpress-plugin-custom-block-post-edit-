@@ -1,11 +1,10 @@
 var el = wp.element.createElement;
 
-wp.blocks.registerBlockType('shaiful-gutenberg/notice-block', {
-	title: 'Notice',		// Block name visible to user
+wp.blocks.registerBlockType('shaiful-gutenberg/titulo-texto', {
+	title: 'Título e texto',		// Block name visible to user
 	icon: 'lightbulb',	// Toolbar icon can be either using WP Dashicons or custom SVG
 	category: 'common',	// Under which category the block would appear
 	attributes: {			// The data this block will be storing
-		type: { type: 'string', default: 'default' },			// Notice box type for loading the appropriate CSS class. Default class is 'default'.
 		title: { type: 'string' },			// Notice box title in h4 tag
 		content: { type: 'array', source: 'children', selector: 'p' }		/// Notice box content in p tag
 	},
@@ -20,29 +19,16 @@ wp.blocks.registerBlockType('shaiful-gutenberg/notice-block', {
 	      props.setAttributes( { content: newdata } );
 	   }
 
-	   function updateType( newdata ) {
-	      props.setAttributes( { type: event.target.value } );
-	   }
-
 		return el( 'div', 
 			{ 
-				className: 'notice-box notice-' + props.attributes.type
+				className: 'notice-box '
 			}, 
-			el(
-				'select', 
-				{
-					onChange: updateType,
-					value: props.attributes.type,
-				},
-				el("option", {value: "default" }, "Default"),
-			  	el("option", {value: "success" }, "Success"),
-			  	el("option", {value: "danger" }, "Danger")
-			),
+			
 			el(
 				'input', 
 				{
 					type: 'text', 
-					placeholder: 'Enter title here...',
+					placeholder: 'Coloque seu Tópico',
 					value: props.attributes.title,
 					onChange: updateTitle,
 					style: { width: '100%' }
@@ -54,7 +40,7 @@ wp.blocks.registerBlockType('shaiful-gutenberg/notice-block', {
                tagName: 'p',
                onChange: updateContent,
                value: props.attributes.content,
-               placeholder: 'Enter description here...'
+               placeholder: 'Coloque seu texto aqui...'
             }
          )
 
@@ -66,7 +52,7 @@ wp.blocks.registerBlockType('shaiful-gutenberg/notice-block', {
 		
 		return el( 'div', 
 			{ 
-				className: 'notice-box notice-' + props.attributes.type
+				className: 'notice-box '
 			}, 
 			el(
 				'h4', 
@@ -82,3 +68,4 @@ wp.blocks.registerBlockType('shaiful-gutenberg/notice-block', {
 		
 	}	// End save()
 });
+/*title,hr, galery, titulo e texto, botoes, */
